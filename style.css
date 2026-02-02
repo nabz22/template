@@ -1,0 +1,289 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #1a1a1a; /* Changed to black/dark as requested */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.header {
+    background: white;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+    height: auto;
+    display: flex;
+    align-items: center;
+    min-height: 120px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+/* Header Green Line Removed */
+.header::after {
+    display: none;
+}
+
+.header-content {
+    width: 55%;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.hospital-logo {
+    width: 60px;
+    height: 60px;
+    background: #4caf50;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.hospital-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hospital-info h1 {
+    font-size: clamp(18px, 2.5vw, 32px);
+    font-weight: 700;
+    color: #333;
+}
+
+.hospital-info p {
+    font-size: clamp(12px, 1.5vw, 20px);
+    color: #666;
+}
+
+.curve-decoration {
+    position: absolute;
+    top: 20px; /* Lower the top edge */
+    right: -70px; /* Push slanted right edge off-screen */
+    width: 35%;
+    bottom: 0; /* Anchor to bottom */
+    height: auto; /* Let top and bottom control height */
+    background: #1a1a1a;
+    transform: skewX(-20deg); /* Create the slant */
+    border-top-left-radius: 40px; /* Add the rounded corner */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 40px; /* Adjust for visual balance */
+    padding-right: 50px; /* Compensate for right offset */
+}
+
+
+
+/* S-Curve: Bagian hitam dari bawah */
+.curve-decoration::before {
+    display: none;
+}
+
+/* S-Curve: Bagian hitam ke atas */
+.curve-decoration::after {
+    display: none;
+}
+
+.datetime-info {
+    position: relative;
+    /* right: 30px; Remove this offset */
+    color: white; /* Back to white */
+    text-align: right;
+    z-index: 10;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    /* padding-right: 20px; */
+    margin: 0;
+    transform: skewX(20deg); /* Counter-skew to keep text straight */
+}
+
+.datetime-info .date {
+    font-size: clamp(12px, 1vw, 16px);
+    line-height: 1.4;
+    color: #ff9800;
+}
+
+.datetime-info .time {
+    font-size: clamp(28px, 3.5vw, 52px);
+    font-weight: 900;
+    color: #ff9800;
+    line-height: 1;
+}
+
+/* Main Layout */
+.main-container {
+    width: 100%;
+    flex: 1;
+    padding: 1.5vh 2vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: minmax(0, 1fr) auto auto;
+    gap: 1.2vh 1.5vw;
+    overflow: hidden;
+    align-content: start;
+}
+
+/* Calling Panel */
+.calling-panel {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.calling-header {
+    background: #e91e63;
+    color: white;
+    padding: 1.5vh 2vw;
+    text-align: center;
+    font-weight: bold;
+    font-size: clamp(14px, 1.5vw, 24px);
+    letter-spacing: 2px;
+}
+
+.calling-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2vh 2vw;
+}
+
+.queue-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(15px, 3vw, 50px);
+}
+
+.queue-number,
+.loket-number {
+    font-size: clamp(60px, 10vw, 150px);
+    font-weight: 900;
+}
+
+.queue-label,
+.loket-label {
+    font-size: clamp(12px, 1.2vw, 20px);
+    color: #666;
+}
+
+.arrow {
+    font-size: clamp(30px, 5vw, 80px);
+    color: #e91e63;
+}
+
+/* Media */
+.media-panel {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.media-placeholder {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    color: white;
+    font-size: clamp(14px, 2vw, 28px);
+}
+
+/* Loket Cards */
+.loket-panel {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: clamp(8px, 1vw, 15px);
+    margin-top: auto;
+}
+
+.loket-card {
+    color: white;
+    padding: clamp(8px, 1.2vh, 20px) clamp(8px, 1vw, 15px);
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.loket-queue-number {
+    font-size: clamp(28px, 4vw, 60px);
+    font-weight: 900;
+}
+
+.loket-name {
+    font-size: clamp(12px, 1.2vw, 18px);
+    font-weight: bold;
+}
+
+.loket-doctor {
+    font-size: clamp(10px, 1vw, 16px);
+    margin-top: clamp(5px, 0.5vh, 15px);
+}
+
+/* Warna Loket */
+.loket-card:nth-child(1){background:#4caf50}
+.loket-card:nth-child(2){background:#2196f3}
+.loket-card:nth-child(3){background:#ff9800}
+.loket-card:nth-child(4){background:#9c27b0}
+.loket-card:nth-child(5){background:#e53935}
+
+/* Footer */
+.footer-info {
+    grid-column: 1 / -1;
+    background: #e0e0e0;
+    padding: clamp(6px, 0.8vh, 15px) clamp(10px, 2vw, 30px);
+    text-align: center;
+    border-radius: 10px;
+    color: #666;
+    font-size: clamp(11px, 1.1vw, 16px);
+    margin-top: auto;
+}
+
+/* Media Queries untuk layar kecil */
+@media (max-width: 768px) {
+    .main-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto;
+    }
+    
+    .loket-panel {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .curve-decoration {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .loket-panel {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
